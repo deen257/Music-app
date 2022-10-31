@@ -12,9 +12,10 @@ import Shuffle from "./shuffle";
 import Repeat from "./repeat";
 import Volumec from "./volumec";
 import Like from "./Like";
+import Likes from "./Likes"; 
 import Add from "./Add";
 
 
 
 
-export {Logo, Home , Logout, Playlist, Radio , Profile, Video, Prev, Next, Shuffle, Repeat, Play, Volumec, Like, Add}
+export {Logo, Home , Logout, Playlist, Radio , Profile, Video, Prev, Next, Shuffle, Repeat, Play, Volumec, Like, Add, Likes}

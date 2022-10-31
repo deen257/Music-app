@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import {
   TopPlay,
   RelatedSongs,
@@ -8,19 +8,14 @@ import {
   Loading,
 } from '../components'
 
-import {
-  useGetTopChartsQuery,
-  useGetNewTracksQuery,
-} from '../redux/services/shazamCore'
+import { useGetTopChartsQuery } from '../redux/services/shazamCore'
 
 const Homee = () => {
-  // const dispatch = useDispatch();
   const { activeSong, isPlaying } = useSelector((state) => state.player)
   const { data, isFetching, error } = useGetTopChartsQuery()
-  
+
   if (isFetching) return <Loading title='loading songs...' />
   if (error) return <Error />
-
 
   return (
     <>

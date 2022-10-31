@@ -1,28 +1,29 @@
-import React from 'react'
-import like from '../assets/like.svg'
+import React, { useState } from 'react'
+import { Likes } from '../assets'
 import PlayPause from './PlayPause'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { playPause, setActiveSong } from '../redux/features/playerSlice'
-import { SongDetails } from '../pages'
 
 const SongCard = ({ song, isPlaying, activeSong, data, index }) => {
+  const [liked, setLiked] = useState(false)
   const dispatch = useDispatch()
-
   const handlePauseClick = () => {
     dispatch(playPause(false))
   }
-
   const handlePlayClick = () => {
     dispatch(setActiveSong({ song, data, index }))
     dispatch(playPause(true))
   }
+  const handleLikeClick = () => {
+    setLiked(!liked)
+  }
 
   return (
     <article className='bg-smhandle min-w-[315px] mr-[20px] lg:w-full flex flex-col flex-wrap content-between  h-[252px] lg:h-auto lg:grid lg:grid-cols-card pl-[17px] p-[23px]  pt-[17px] mb-[12px] rounded-[20px] text-brightWhite animate-slideup '>
-      <div className='relative w-[108px]  h-[109px] lg:mr-[10px] lg:w-[63px] lg:h-[64px] group'>
+      <div className='relative w-[108px] h-[109px] lg:mr-[10px] lg:w-[63px] lg:h-[64px] group'>
         <div
-          className={`absolute justify-center items-center  inset-0 top-0    group-hover:flex ${
+          className={`absolute justify-center items-center  inset-0 top-0 group-hover:flex ${
             activeSong?.title === song.title ? 'flex cover-bg' : 'hidden'
           }`}
         >
@@ -46,19 +47,11 @@ const SongCard = ({ song, isPlaying, activeSong, data, index }) => {
             {song.title}
           </h1>
         </Link>
-        <Link
-          to={
-            song.artists
-              ? `/artists/${song?.artists[0]?.adamid}`
-              : '/top-artists'
-          }
-        >
-          <h4 className='opacity-50 '>{song.subtitle}</h4>
-        </Link>
+        <h4 className='opacity-50 '>{song.subtitle}</h4>
         <p className='mt-[24px] lg:mt-0'>1:20:3</p>
       </div>
-      <div className='lg:self-center'>
-        <img src={like} alt='like' />
+      <div className='lg:self-center cursor-pointer'>
+        <Likes onClick={handleLikeClick} color={liked ? `#FACD66` : ''} />
       </div>
     </article>
   )

@@ -9,6 +9,7 @@ const initialState = {
   genreListId: '',
   activeSong: {},
   playlist: [],
+  playlistSong:{},
   genreListId: '',
 }
 
@@ -18,8 +19,6 @@ const playerSlice = createSlice({
   reducers: {
     setActiveSong: (state, action) => {
       state.activeSong = action.payload.song
-      console.log(action.payload.song.properties)
-
       if (action.payload?.data?.tracks?.hits) {
         state.currentSongs = action.payload.data.tracks.hits
       } else if (action.payload?.data?.properties) {
@@ -27,6 +26,7 @@ const playerSlice = createSlice({
       } else {
         state.currentSongs = action.payload.data
       }
+      
 
       state.currentIndex = action.payload.index
       state.isActive = true
@@ -63,7 +63,22 @@ const playerSlice = createSlice({
     },
 
     addToPlaylist: (state, action) => {
-      state.playlist += action.payload
+      state.playlist = action.payload.song
+      if (action.payload?.data?.tracks?.hits) {
+        state.playlistSong = action.payload.data.tracks.hits
+      } else if (action.payload?.data?.properties) {
+        state.playlistSong = action.payload?.data?.tracks
+      } else {
+        state.playlistSong = action.payload.data
+      }
+
+      // let newPlaylist;
+      // if (action.payload){
+      //   console.log(state.playlist.data);
+      // newPlaylist = action.payload
+      // return {...state , playlist:action.payload }
+      // }
+      
     },
   },
 })

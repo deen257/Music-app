@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux'
 import { Route, Routes } from 'react-router-dom'
 import { Searchbar, Sidebar, MusicPlayer } from './components'
 import {
-  ArtistDetails,
   Playlist,
   AroundYou,
   Search,
@@ -11,8 +10,8 @@ import {
   TopCharts,
   MusicVideo,
   Radio,
-  Profile,
   Homee,
+  ErrorPage,
 } from './pages'
 
 const App = () => {
@@ -23,7 +22,7 @@ const App = () => {
         <div className='z-1 lg:absolute left-0 '>
           <Sidebar />
         </div>
-        <div className='absolute  left-[100px] lg:left-[100px] top-0 pt-[20px] right-[20px] '>
+        <div className='absolute  left-[100px] lg:left-[100px] top-0 pt-[20px] right-[20px] max-h-[100px] '>
           <Searchbar />
         </div>
         <div className='z-0 absolute left-[23px] lg:left-[110px]  top-[70px] bottom-[0px] right-[0px] hide-scrollbar overflow-y-scroll overflow-x-scroll h-[calc(100vh-100px)] '>
@@ -34,10 +33,10 @@ const App = () => {
               <Route path='/playlits' element={<Playlist />} />
               <Route path='/music-video' element={<MusicVideo />} />
               <Route path='/radio' element={<Radio />} />
-              <Route path='/profile' element={<Profile />} />
               <Route path='/songs/:songid-:index' element={<SongDetails />} />
               <Route path='/search/:searchTerm' element={<Search />} />
               <Route path='/around-you' element={<AroundYou />} />
+              <Route path='/*' element={<ErrorPage />} />
             </Routes>
             <div className='h-[100px]'></div>
           </section>

@@ -1,3 +1,4 @@
+import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { Like, Play, Add } from '../assets'
@@ -9,15 +10,13 @@ import {
 } from '../redux/services/shazamCore'
 
 const SongDetails = () => {
+  const [liked, setLiked] = useState(false)
   const { songid, index } = useParams()
   const dispatch = useDispatch()
   const { activeSong, isPlaying } = useSelector((state) => state.player)
   const { data: songData, isFetching: isFetchingDetails } =
     useGetSongDetailsQuery({ songid })
   const { data } = useGetTopChartsQuery()
-  console.log(songData)
-  console.log(activeSong)
-
   const handlePauseClick = () => {
     dispatch(playPause(false))
   }
@@ -26,11 +25,14 @@ const SongDetails = () => {
     dispatch(setActiveSong({ song, data, index }))
     dispatch(playPause(true))
   }
+  const handleLikeClick = () => {
+    setLiked(!liked)
+  }
 
-  if(isFetchingDetails) return (<Loading/>)
+  if (isFetchingDetails) return <Loading />
 
   return (
-    <>
+    <section className=''>
       <div className='flex flex-col md:flex-row md:mb-10'>
         <div className=' min-w-[284px] max-w-[380px] min-h-[288px] '>
           <img
@@ -51,7 +53,9 @@ const SongDetails = () => {
           </h4>
           <div className='flex items-center my-6 md:my-0 md:mt-8 '>
             <button
-              onClick={() =>{handlePlayClick(songData ,index)}}
+              onClick={() => {
+                handlePlayClick(songData, index)
+              }}
               className='song-btn p-[10px] flex justify-center items-center mr-2.5'
             >
               <div className='w-[14px] h-[14px] mr-[10px] bg-secondary rounded-full flex justify-center items-center '>
@@ -63,12 +67,12 @@ const SongDetails = () => {
               <Add className='mr-[10px]' /> Add to collection
             </button>
             <button className='song-btn p-[10px] flex justify-center items-center'>
-              <Like color='#E5524A' className='' />
+              <Like onClick={handleLikeClick} color={liked ? `#FACD66` : ''} />
             </button>
           </div>
         </div>
       </div>
-      <div className='flex flex-row justify-between items-center song-tab w-full  p-3'>
+      <div className='flex flex-row justify-between items-center song-tab w-full  p-3 '>
         <div className='flex flex-row justify-between items-center'>
           <div className='relative w-[39px] h-[39px]'>
             <div
@@ -83,7 +87,9 @@ const SongDetails = () => {
                 isPlaying={isPlaying}
                 activeSong={activeSong}
                 handlePause={handlePauseClick}
-                handlePlay={() =>{handlePlayClick(songData ,index)}}
+                handlePlay={() => {
+                  handlePlayClick(songData, index)
+                }}
               />
             </div>
             <img
@@ -92,11 +98,17 @@ const SongDetails = () => {
               className='w-full h-full rounded-lg'
             />
           </div>
-          <Like color='white' className=' hidden sm:block sm: ml-3' />
+          <Like
+            onClick={handleLikeClick}
+            color={liked ? `#FACD66` : ''}
+            className=' hidden sm:block sm: ml-3'
+          />
 
           <div className='flex flex-col sm:flex-row sm:items-center ml-[14px] sm:ml-0 '>
-            <h4 className='font-normal leading-[14px] text-[12px] mb-1.5 sm:ml-9 sm:mr-[100px] md:mr-[150px] lg:mr-[200px]'>
-              {songData.title} ~ {songData.subtitle}
+            <h4 className='font-normal leading-[14px] text-[12px] mb-1.5 sm:ml-9 sm:mr-[100px] md:mr-[150px] lg:mr-[200px]  '>
+              <div className='max-w-[230px] truncate h-full'>
+                {songData.title} ~ {songData.subtitle}
+              </div>
             </h4>
             <h4 className='font-normal leading-[12px] text-[10px]'> Single</h4>
           </div>
@@ -113,7 +125,7 @@ const SongDetails = () => {
           </h4>
         </div>
       </div>
-    </>
+    </section>
   )
 }
 

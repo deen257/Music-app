@@ -1,12 +1,8 @@
 import React from 'react'
 import { SongCard, PlayPause } from '../components/index'
-// import { data } from '../assets/data'
 import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { playPause, setActiveSong } from '../redux/features/playerSlice'
 
 const TopPlay = ({ data, activeSong, isPlaying }) => {
-  
   return (
     <section className=' lg:ml-[24px]'>
       <div className='flex justify-between my-[16px] lg:my-0'>
@@ -21,7 +17,7 @@ const TopPlay = ({ data, activeSong, isPlaying }) => {
             <SongCard
               key={song.key}
               song={song}
-              index={index} 
+              index={index}
               data={data}
               isPlaying={isPlaying}
               activeSong={activeSong}

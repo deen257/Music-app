@@ -1,12 +1,5 @@
 import React from 'react'
-import { MdSkipNext, MdSkipPrevious } from 'react-icons/md'
-import PlayPause from '../PlayPause'
-import {
-  BsArrowRepeat,
-  BsFillPauseFill,
-  BsFillPlayFill,
-  BsShuffle,
-} from 'react-icons/bs'
+import { BsFillPauseFill } from 'react-icons/bs'
 import { Prev, Next, Shuffle, Repeat, Play } from '../../assets'
 
 const Controls = ({

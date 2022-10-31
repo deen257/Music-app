@@ -41,13 +41,8 @@ const AlbumCard = ({ song, data, isPlaying, activeSong, index }) => {
       <Link to={`/songs/${song?.key}-${index}`}>
         <p className='mt-[5px]'>{song.title}</p>
       </Link>
-      <Link
-        to={
-          song.artists ? `/artists/${song?.artists[0]?.adamid}` : '/top-artists'
-        }
-      >
-        <p className='mt-[5px] opacity-50'>{song.subtitle}</p>
-      </Link>
+
+      <p className='mt-[5px] opacity-50'>{song.subtitle}</p>
     </div>
   )
 }

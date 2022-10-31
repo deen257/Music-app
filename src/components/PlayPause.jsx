@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaPauseCircle, FaPlayCircle } from 'react-icons/fa'
+import { FaPauseCircle } from 'react-icons/fa'
 import { Play } from '../assets'
 
 const PlayPause = ({ isPlaying, activeSong, song, handlePause, handlePlay }) =>

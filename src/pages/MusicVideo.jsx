@@ -2,7 +2,7 @@ import React from 'react'
 
 const MusicVideo = () => {
   return (
-    <div>MusicVideo</div>
+    <div className='flex justify-center items-center font-bold capitalize text-[30px]'>No Videos available for now</div>
   )
 }
 

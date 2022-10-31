@@ -3,7 +3,7 @@ import { SongBar, Loading, Error } from '../components/index'
 import { useGetNewTracksQuery } from '../redux/services/shazamCore'
 import { Link } from 'react-router-dom'
 
-const NewReleases = ({activeSong, isPlaying}) => {
+const NewReleases = ({ activeSong, isPlaying }) => {
   const { data, isFetching, error } = useGetNewTracksQuery()
   if (isFetching) {
     return <Loading title='loading music ...' />

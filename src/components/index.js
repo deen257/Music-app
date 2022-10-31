@@ -1,5 +1,4 @@
-import ArtistCard from './ArtistCard'
-import DetailsHeader from './DetailsHeader'
+import PlaylistCard from './PlaylistCard'
 import Error from './Error'
 import Loading from './Loading'
 import MusicPlayer from './MusicPlayer'
@@ -15,8 +14,7 @@ import AlbumCard from './AlbumCard'
 import PlayPause from './PlayPause'
 
 export {
-  ArtistCard,
-  DetailsHeader,
+  PlaylistCard,
   Error,
   Loading,
   MusicPlayer,

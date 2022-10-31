@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react'
 
-function Next({className, onClick}) {
+function Next({ className, onClick }) {
   return (
     <svg
       className={className}
@@ -19,4 +19,4 @@ function Next({className, onClick}) {
   )
 }
 
-export default Next;
+export default Next

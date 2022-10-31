@@ -12,7 +12,7 @@ const PlayPause = ({ isPlaying, activeSong, song, handlePause, handlePlay }) =>
     </div>
   ) : (
     <div className='w-[35px] h-[35px] bg-secondary rounded-[99px] flex justify-center items-center'>
-      <Play className='w-fit h-fit  ' color='white' onClick={handlePlay} />
+      <Play className=' ' color='white' onClick={handlePlay} />
     </div>
   )
 
